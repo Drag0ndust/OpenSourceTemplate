@@ -5,4 +5,4 @@ Legend:
 - 🐜 Bug fix
 
 ## Version x.x.x
-### Major/Minor/Pach Change 
+### Major/Minor/Patch Change 

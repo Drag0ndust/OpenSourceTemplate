@@ -26,7 +26,7 @@ git remote add upstream <repo url here>
 ```
 
 * **BEFORE** starting on an issue, comment on the issue you want to work on.
-   * This prevents two people from working on the same issue. Mikaela (the maintainer) will assign you that issue, and you can get started on it.
+   * This prevents two people from working on the same issue. Thimo (aka Drag0ndust) (the maintainer) will assign you that issue, and you can get started on it.
 
 * Checkout a new branch (from the `develop` branch) to work on an issue:
 
