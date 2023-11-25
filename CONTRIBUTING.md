@@ -1,7 +1,7 @@
 # Contribution Guidelines
 This document contains the rules and guidelines that developers are expected to follow, while contributing to this repository.
 
-* All contributions must NOT add any SwiftLint warnings or errors. There is a GitHub action setup for any PRs to develop, and Xcode will show any warnings/errors.
+* All contributions must NOT add any warnings or errors. There is a GitHub action setup for any PRs to develop.
 
 # About the Project
 
