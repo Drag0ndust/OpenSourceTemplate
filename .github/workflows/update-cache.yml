@@ -1,0 +1,60 @@
+name: Update Cache
+
+on:
+  push:
+    branches:
+      - "develop"
+
+# Limit only the latest workflow created to run
+concurrency:
+  group: build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Swift Packages
+        id: cache-spm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-swift-packages
+        with:
+          path: ./.build
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Cache Ruby Packages
+        id: cache-ruby
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-ruby-packages
+        with:
+          path: ./vendor
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - name: Cache Homebrew Packages
+        id: cache-homebrew
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-homebrew-packages
+        with:
+          path: /usr/local/opt/
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./Brewfile.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+
+      - if: ${{ steps.cache-ruby.outputs.cache-hit != 'true' }}
+        name: Install Gem Dependencies
+        run: bundle install --path vendor/bundle
+
+      - if: ${{ steps.cache-homebrew.outputs.cache-hit != 'true' }}
+        name: Install Homebrew Dependencies/
+        run: brew bundle
