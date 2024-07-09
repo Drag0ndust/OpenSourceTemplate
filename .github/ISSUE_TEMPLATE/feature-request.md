@@ -1,17 +1,27 @@
----
-name: Feature Request
-about: Suggest an idea for this project
+name: "🚀 Feature request"
 title: FEATURE - 
-labels: feature request
-assignees: ''
+description: Suggest a feature that will improve the OpenSourceTemplate
+labels: ["feature request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to fill out this feature request!
 
----
-
-## Describe the feature you want the app to have that it currently doesn't
-* A clear and concise description of what you want to happen.
-
-## Describe alternatives you've considered
-* A clear and concise description of any alternative solutions or features you've considered.
-
-## Additional context
-* Add any other context or screenshots about the feature request here.
+        Please carefully read the contribution docs before suggesting a new feature
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe the feature
+      description: A clear and concise description of what you think would be a helpful addition to OpenSourceTemplate, including the possible use cases and alternatives you have considered. If you have a working prototype or package that implements it, please include a link.
+      placeholder: Feature description
+    validations:
+      required: true
+  - type: checkboxes
+    id: additional-info
+    attributes:
+      label: Additional information
+      description: Additional information that helps us decide how to proceed.
+      options:
+        - label: Would you be willing to help implement this feature?
+        - label: Could this feature be implemented as a module?
